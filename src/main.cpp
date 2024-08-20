@@ -1,18 +1,14 @@
 #include <Arduino.h>
+#include "UltrasonicSensor.h"
 
-// put function declarations here:
-int myFunction(int, int);
+UltrasonicSensor sensor(2, 3); // 초음파 센서 핀 설정
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    Serial.begin(115200);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    int distance = sensor.getDistance();
+    Serial.println("Distance: " + String(distance) + " cm");
+    delay(1000);
 }
