@@ -1,7 +1,7 @@
 #include <Arduino.h>
-#include "UltrasonicSensor.h"
+#include "Ultrasonic.h"
 
-UltrasonicSensor sensor(2, 3); // 초음파 센서 핀 설정
+UltrasonicSensor sensor(10, 8); // 초음파 센서 핀 설정
 
 void setup() {
     Serial.begin(115200);
