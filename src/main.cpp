@@ -1,14 +1,25 @@
 #include <Arduino.h>
-#include "Ultrasonic.h"
+#include "GPS.h"
 
-UltrasonicSensor sensor(10, 8); // 초음파 센서 핀 설정
+GPSModule gpsModule(Serial);
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(9600);
+    gpsModule.begin();
 }
 
 void loop() {
-    int distance = sensor.getDistance();
-    Serial.println("Distance: " + String(distance) + " cm");
+    gpsModule.update();
+    if (gpsModule.locationIsValid()) {
+        Serial.print("Latitude: ");
+        Serial.print(gpsModule.getLatitude(), 6);
+        Serial.print(" Longitude: ");
+        Serial.print(gpsModule.getLongitude(), 6);
+        Serial.print(" Altitude: ");
+        Serial.print(gpsModule.getAltitude());
+        Serial.println(" meters");
+    } else {
+        Serial.println("Location not valid.");
+    }
     delay(1000);
 }
