@@ -1,49 +1,34 @@
 #include <Arduino.h>
-#include <Wire.h>
-#include "MPU6050.h"
+#include "ShockSensor.h"
 
-MPU6050 mpu;
+ShockSensor shockSensor(2);  // 센서 연결 핀번호
+
+unsigned long previousMillis = 0;  //시간 변수
+const long interval = 100;         // 100밀리초마다 충격 감지
 
 void setup() {
-    Serial.begin(115200);
-    while (!Serial) {
-        delay(10);
-    }
-    
-    mpu.begin();
-    Serial.println("MPU6050 initialized.");
+  
+  Serial.begin(9600);
+
+  shockSensor.begin();
+
+  // 초기 메시지 출력
+  Serial.println("Starting Pothole Detection...");
 }
 
 void loop() {
-    mpu.read();
+  // 현재 시간 읽기
+  unsigned long currentMillis = millis();
 
-    Serial.print("Temperature: ");
-    Serial.print(mpu.getTemperature());
-    Serial.println(" C");
+  // 주기적으로 충격 감지 확인
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;  // 이전 시간을 현재 시간으로 업데이트
 
-    Serial.print("Acceleration X: ");
-    Serial.print(mpu.getAccelerationX());
-    Serial.println(" m/s^2");
-
-    Serial.print("Acceleration Y: ");
-    Serial.print(mpu.getAccelerationY());
-    Serial.println(" m/s^2");
-
-    Serial.print("Acceleration Z: ");
-    Serial.print(mpu.getAccelerationZ());
-    Serial.println(" m/s^2");
-
-    Serial.print("Gyroscope X: ");
-    Serial.print(mpu.getGyroscopeX());
-    Serial.println(" rad/s");
-
-    Serial.print("Gyroscope Y: ");
-    Serial.print(mpu.getGyroscopeY());
-    Serial.println(" rad/s");
-
-    Serial.print("Gyroscope Z: ");
-    Serial.print(mpu.getGyroscopeZ());
-    Serial.println(" rad/s");
-
-    delay(1000);
+    // 충격 감지 시 시리얼 모니터에 데이터 출력
+    if (shockSensor.isShockDetected()) {
+      Serial.print("Shock detected at: ");
+      Serial.print(currentMillis);
+      Serial.println(" ms");
+    }
+  }
 }
