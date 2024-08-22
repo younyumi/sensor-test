@@ -1,49 +1,15 @@
 #include <Arduino.h>
-#include <Wire.h>
 #include "MPU6050.h"
 
-MPU6050 mpu;
+MPU6050 mpuModule;
 
 void setup() {
     Serial.begin(115200);
-    while (!Serial) {
-        delay(10);
-    }
-    
-    mpu.begin();
-    Serial.println("MPU6050 initialized.");
+    mpuModule.begin(); // MPU6050 초기화
 }
 
 void loop() {
-    mpu.read();
-
-    Serial.print("Temperature: ");
-    Serial.print(mpu.getTemperature());
-    Serial.println(" C");
-
-    Serial.print("Acceleration X: ");
-    Serial.print(mpu.getAccelerationX());
-    Serial.println(" m/s^2");
-
-    Serial.print("Acceleration Y: ");
-    Serial.print(mpu.getAccelerationY());
-    Serial.println(" m/s^2");
-
-    Serial.print("Acceleration Z: ");
-    Serial.print(mpu.getAccelerationZ());
-    Serial.println(" m/s^2");
-
-    Serial.print("Gyroscope X: ");
-    Serial.print(mpu.getGyroscopeX());
-    Serial.println(" rad/s");
-
-    Serial.print("Gyroscope Y: ");
-    Serial.print(mpu.getGyroscopeY());
-    Serial.println(" rad/s");
-
-    Serial.print("Gyroscope Z: ");
-    Serial.print(mpu.getGyroscopeZ());
-    Serial.println(" rad/s");
-
-    delay(1000);
+    mpuModule.readSensors(); // 센서 데이터 읽기 및 출력
+    Serial.println("");      // 출력 간격을 주기 위해 빈 줄 추가
+    delay(500);              // 0.5초 간격으로 데이터 출력
 }
