@@ -1,26 +1,24 @@
 #ifndef GPS_H
 #define GPS_H
 
+#include <SoftwareSerial.h>
 #include <TinyGPS++.h>
-#include <HardwareSerial.h>
 
 class GPSModule {
 public:
-    GPSModule(HardwareSerial& serial);
+    GPSModule(int rxPin, int txPin, long baudRate = 9600);
     void begin();
     void update();
     double getLatitude();
     double getLongitude();
-    double getAltitude();
     bool locationIsValid();
 
 private:
-    HardwareSerial& _serial;
-    TinyGPSPlus _gps;
-    double _latitude;
-    double _longitude;
-    double _altitude;
-    bool _locationValid;
+    TinyGPSPlus gps;
+    SoftwareSerial ss;
+    double latitude;
+    double longitude;
+    bool locationValid;
 };
 
-#endif // GPSMODULE_H
+#endif // GPS_H

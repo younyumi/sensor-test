@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include "GPS.h"
 
-GPSModule gpsModule(Serial);
+GPSModule gpsModule(4, 3); // RX, TX 핀 번호
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
     gpsModule.begin();
 }
 
@@ -12,12 +12,9 @@ void loop() {
     gpsModule.update();
     if (gpsModule.locationIsValid()) {
         Serial.print("Latitude: ");
-        Serial.print(gpsModule.getLatitude(), 6);
-        Serial.print(" Longitude: ");
-        Serial.print(gpsModule.getLongitude(), 6);
-        Serial.print(" Altitude: ");
-        Serial.print(gpsModule.getAltitude());
-        Serial.println(" meters");
+        Serial.println(gpsModule.getLatitude(), 6);
+        Serial.print("Longitude: ");
+        Serial.println(gpsModule.getLongitude(), 6);
     } else {
         Serial.println("Location not valid.");
     }
