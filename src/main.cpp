@@ -1,49 +1,28 @@
 #include <Arduino.h>
-#include <Wire.h>
-#include "MPU6050.h"
+#include "MultiUltrasonic.h"
 
-MPU6050 mpu;
+const int numSensors = 4;
+int triggerPins[numSensors] = {2, 4, 6, 8};
+int echoPins[numSensors] = {3, 5, 7, 9};
+
+MultiUltrasonic ultrasonicSensors(triggerPins, echoPins, numSensors);
 
 void setup() {
-    Serial.begin(115200);
-    while (!Serial) {
-        delay(10);
-    }
-    
-    mpu.begin();
-    Serial.println("MPU6050 initialized.");
+    Serial.begin(9600);
+    ultrasonicSensors.begin();
 }
 
 void loop() {
-    mpu.read();
+    ultrasonicSensors.update();
 
-    Serial.print("Temperature: ");
-    Serial.print(mpu.getTemperature());
-    Serial.println(" C");
+    for (int i = 0; i < numSensors; i++) {
+        Serial.print("Sensor ");
+        Serial.print(i + 1);
+        Serial.print(": ");
+        Serial.print(ultrasonicSensors.getDistance(i));
+        Serial.println(" cm");
+    }
 
-    Serial.print("Acceleration X: ");
-    Serial.print(mpu.getAccelerationX());
-    Serial.println(" m/s^2");
-
-    Serial.print("Acceleration Y: ");
-    Serial.print(mpu.getAccelerationY());
-    Serial.println(" m/s^2");
-
-    Serial.print("Acceleration Z: ");
-    Serial.print(mpu.getAccelerationZ());
-    Serial.println(" m/s^2");
-
-    Serial.print("Gyroscope X: ");
-    Serial.print(mpu.getGyroscopeX());
-    Serial.println(" rad/s");
-
-    Serial.print("Gyroscope Y: ");
-    Serial.print(mpu.getGyroscopeY());
-    Serial.println(" rad/s");
-
-    Serial.print("Gyroscope Z: ");
-    Serial.print(mpu.getGyroscopeZ());
-    Serial.println(" rad/s");
-
-    delay(1000);
+    Serial.println("---------------------");
+    delay(500);
 }
