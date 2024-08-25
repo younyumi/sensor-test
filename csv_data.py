@@ -1,4 +1,3 @@
-
 import serial  
 import csv
 import time
@@ -18,3 +17,4 @@ with open('data.csv', mode='w', newline='') as file:
                 distance = parts[1].strip().replace("cm", "").strip()
                 timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
                 writer.writerow([timestamp, distance])
+

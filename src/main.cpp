@@ -1,14 +1,32 @@
 #include <Arduino.h>
-#include "Ultrasonic.h"
+#include "MultiUltrasonic.h"
 
-UltrasonicSensor sensor(10, 8); // trig, echo
+const int num = 4;
+int trig[num] = {2, 4, 6, 8};
+int acho[num] = {3, 5, 7, 9};
+
+MultiUltrasonic ultrasonicSensors(trig, acho, num);
+
+
+
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(9600);
+    ultrasonicSensors.begin();
 }
 
 void loop() {
-    int distance = sensor.getDistance();
-    Serial.println("Distance: " + String(distance) + " cm");
-    delay(300);
+    ultrasonicSensors.update();
+
+    for (int i = 0; i < num
+; i++) {
+        Serial.print("Sensor ");
+        Serial.print(i + 1);
+        Serial.print(": ");
+        Serial.print(ultrasonicSensors.getDistance(i));
+        Serial.println(" cm");
+    }
+
+    Serial.println("---------------------");
+    delay(500);
 }
