@@ -5,15 +5,15 @@
 
 class MultiUltrasonic {
 public:
-    MultiUltrasonic(int triggerPins[], int echoPins[], int numSensors);
+    MultiUltrasonic(int trig[], int echo[], int num);
     void begin();   //초음파 센서 핀 설정 함수
     void update();  //거리 데이터 업데이트 함수
     float getDistance(int index);  //측정된 거리 받아옴
 
 private:
-    int* triggerPins;
-    int* echoPins;
-    int numSensors;
+    int* trig;
+    int* echo;
+    int num;
     float* distances;
     long measureDistance(int triggerPin, int echoPin);
 };

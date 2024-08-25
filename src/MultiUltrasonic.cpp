@@ -1,27 +1,27 @@
 #include "MultiUltrasonic.h"
 
-MultiUltrasonic::MultiUltrasonic(int triggerPins[], int echoPins[], int numSensors) {
-    this->triggerPins = triggerPins;
-    this->echoPins = echoPins;
-    this->numSensors = numSensors;
-    distances = new float[numSensors];
+MultiUltrasonic::MultiUltrasonic(int trig[], int echo[], int num) {
+    this->trig = trig;
+    this->echo = echo;
+    this->num = num;
+    distances = new float[num];
 }
 
 void MultiUltrasonic::begin() {
-    for (int i = 0; i < numSensors; i++) {
-        pinMode(triggerPins[i], OUTPUT);
-        pinMode(echoPins[i], INPUT);
+    for (int i = 0; i < num; i++) {
+        pinMode(trig[i], OUTPUT);
+        pinMode(echo[i], INPUT);
     }
 }
 
 void MultiUltrasonic::update() {
-    for (int i = 0; i < numSensors; i++) {
-        distances[i] = measureDistance(triggerPins[i], echoPins[i]);
+    for (int i = 0; i < num; i++) {
+        distances[i] = measureDistance(trig[i], echo[i]);
     }
 }
 
 float MultiUltrasonic::getDistance(int index) {
-    if (index >= 0 && index < numSensors) {
+    if (index >= 0 && index < num) {
         return distances[index];
     } else {
         return -1;  // 잘못된 인덱스 처리
