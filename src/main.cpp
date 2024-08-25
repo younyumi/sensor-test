@@ -10,5 +10,5 @@ void setup() {
 void loop() {
     int distance = sensor.getDistance();
     Serial.println("Distance: " + String(distance) + " cm");
-    delay(1000);
+    delay(300);
 }
