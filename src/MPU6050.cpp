@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include <Arduino.h>
 
-MPU6050::MPU6050() : mpu() {}  //mpu 객체
+MPU6050::MPU6050() : mpu() {} 
 
 void MPU6050::begin() {
     if(!mpu.begin()) {
@@ -21,11 +21,11 @@ void MPU6050::readSensors() {
     sensors_event_t a, g,temp;
     mpu.getEvent(&a, &g, &temp);
 
-    Serial.print("Acceleration X: ");    //가속도랑 roll, pitch만 사용할듯
+    Serial.print("Acceleration X:");    //가속도랑 roll, pitch만 사용할듯
     Serial.print(a.acceleration.x);
-    Serial.print("Acceleration Y: ");
+    Serial.print(" Acceleration Y:");
     Serial.print(a.acceleration.y);
-    Serial.print("Acceleration Z: ");
+    Serial.print(" Acceleration Z:");
     Serial.print(a.acceleration.z);
     Serial.println("m/s^2");
 
@@ -41,14 +41,14 @@ void MPU6050::readSensors() {
     float roll = atan(a.acceleration.x / sqrt(pow(a.acceleration.y,2)+pow(a.acceleration.z,2)))*180.0/PI;
     float pitch = atan(a.acceleration.y / sqrt(pow(a.acceleration.x,2)+pow(a.acceleration.z,2)))*180.0/PI;
 
-    Serial.print("Roll: ");
+    Serial.print("Roll:");
     Serial.print(roll);
     Serial.print(" deg, ");
 
-    Serial.print("Pitch: ");
+    Serial.print("Pitch:");
     Serial.print(pitch);
     Serial.print(" deg");
 
     Serial.println("");
-    delay(500);
+    delay(100);
 }
