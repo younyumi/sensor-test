@@ -54,7 +54,7 @@ void loop() {
     Serial.print(pitch);
     Serial.println("deg");
 
-    Serial.println("----------------------------");
+    Serial.println("---------------------------------------------");
 
     delay(500);
 }
