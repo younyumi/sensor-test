@@ -30,31 +30,18 @@ void loop() {
     float roll, pitch;
     mpu6050Sensor.getRollPitch(roll, pitch);
 
-    Serial.print("Distance: ");
+    Serial.print("Distance:");
     Serial.print(distance);
-    Serial.println("cm, ");
-
-    Serial.print("Acc_X: ");
+    Serial.print(",Acc_X:");
     Serial.print(ax);
-    Serial.print("m/s^2, ");
-
-    Serial.print("Acc_Y: ");
+    Serial.print(",Acc_Y:");
     Serial.print(ay);
-    Serial.print("m/s^2, ");
-
-    Serial.print("Acc_Z: ");
+    Serial.print(",Acc_Z:");
     Serial.print(az);
-    Serial.println("m/s^2, ");
-
-    Serial.print("Roll: ");
+    Serial.print(",Roll:");
     Serial.print(roll);
-    Serial.print("deg, ");
-
-    Serial.print("Pitch: ");
-    Serial.print(pitch);
-    Serial.println("deg");
-
-    Serial.println("---------------------------------------------");
+    Serial.print(",Pitch:");
+    Serial.println(pitch);
 
     delay(500);
 }

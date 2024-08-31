@@ -2,8 +2,7 @@ import serial
 import csv
 import time
 
-ser = serial.Serial('/dev/ttyACM0', 115200)  
-ser.flush()
+ser = serial.Serial('/dev/ttyACM0', 115200)  # 포트 설정(꼭 확인해야 함)
 
 with open('sensor_data.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
@@ -12,17 +11,23 @@ with open('sensor_data.csv', mode='w', newline='') as file:
     while True:
         line = ser.readline().decode('utf-8').strip()
         if line:
-            print(line)  
-            parts = line.split(', ')
+            print(f"{line}") 
+            parts = line.split(',')
 
             if len(parts) == 6:  
-                distance = parts[0].split(': ')[1].replace("cm", "").strip()
-                accel_x = parts[1].split(': ')[1].replace("m/s^2", "").strip()
-                accel_y = parts[2].split(': ')[1].replace("m/s^2", "").strip()
-                accel_z = parts[3].split(': ')[1].replace("m/s^2", "").strip()
-                roll = parts[4].split(': ')[1].replace("deg", "").strip()
-                pitch = parts[5].split(': ')[1].replace("deg", "").strip()
-                
-                timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+                try:
+                    distance = parts[0].split(':')[1].strip()
+                    accel_x = parts[1].split(':')[1].strip()
+                    accel_y = parts[2].split(':')[1].strip()
+                    accel_z = parts[3].split(':')[1].strip()
+                    roll = parts[4].split(':')[1].strip()
+                    pitch = parts[5].split(':')[1].strip()
+                    
+                    print(f"{distance}, {accel_x}, {accel_y}, {accel_z}, {roll}, {pitch}")
+                    
+                    timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
-                writer.writerow([timestamp, distance, accel_x, accel_y, accel_z, roll, pitch])
+                    writer.writerow([timestamp, distance, accel_x, accel_y, accel_z, roll, pitch])
+                    file.flush()  
+                except Exception as e:
+                    print(f"Error parsing line: {e}")
