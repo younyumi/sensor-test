@@ -24,20 +24,37 @@ void setup() {
 void loop() {
     float distance = ultrasonicSensor.getDistance();
 
+    float ax=0, ay=0, az=0;
+    mpu6050Sensor.getAcceleration(ax,ay,az);
+
     float roll, pitch;
     mpu6050Sensor.getRollPitch(roll, pitch);
 
     Serial.print("Distance: ");
     Serial.print(distance);
-    Serial.print(" cm, ");
+    Serial.println("cm, ");
+
+    Serial.print("Acc_X: ");
+    Serial.print(ax);
+    Serial.print("m/s^2, ");
+
+    Serial.print("Acc_Y: ");
+    Serial.print(ay);
+    Serial.print("m/s^2, ");
+
+    Serial.print("Acc_Z: ");
+    Serial.print(az);
+    Serial.println("m/s^2, ");
 
     Serial.print("Roll: ");
     Serial.print(roll);
-    Serial.print(" deg, ");
+    Serial.print("deg, ");
 
     Serial.print("Pitch: ");
     Serial.print(pitch);
-    Serial.println(" deg");
+    Serial.println("deg");
+
+    Serial.println("----------------------------");
 
     delay(500);
 }
