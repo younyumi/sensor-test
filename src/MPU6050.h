@@ -1,5 +1,5 @@
-#ifndef MPU6050_SENSOR_H
-#define MPU6050_SENSOR_H
+#ifndef MPU6050_H
+#define MPU6050_H
 
 #include <Wire.h>
 #include <Adafruit_MPU6050.h>

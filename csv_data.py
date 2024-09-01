@@ -25,7 +25,7 @@ with open('sensor_data.csv', mode='w', newline='') as file:
                     
                     print(f"{distance}, {accel_x}, {accel_y}, {accel_z}, {roll}, {pitch}")
                     
-                    timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+                    timestamp = time.strftime('%H:%M:%S', time.localtime())
 
                     writer.writerow([timestamp, distance, accel_x, accel_y, accel_z, roll, pitch])
                     file.flush()  

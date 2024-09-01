@@ -4,9 +4,9 @@ bool MPU6050::begin() {
     if (!mpu.begin()) {
         return false;
     }
-    mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
-    mpu.setGyroRange(MPU6050_RANGE_250_DEG);
-    mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
+    mpu.setAccelerometerRange(MPU6050_RANGE_16_G);  //2,4,8,16 클수록 민감도 낮아짐
+    mpu.setGyroRange(MPU6050_RANGE_1000_DEG);
+    mpu.setFilterBandwidth(MPU6050_BAND_94_HZ);  //5,10,21,44,94,184,260 필터 대역폭, 작을수록 노이즈 제거 잘되는데 신호 반응속도 느림
     delay(100);
     return true;
 }
