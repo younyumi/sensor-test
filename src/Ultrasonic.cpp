@@ -1,6 +1,6 @@
 #include "Ultrasonic.h"
 
-UltrasonicSensor::UltrasonicSensor(int trig, int echo) 
+UltrasonicSensor::UltrasonicSensor(int trig, int echo)
     : trig(trig), echo(echo) {
     pinMode(trig, OUTPUT);
     pinMode(echo, INPUT);

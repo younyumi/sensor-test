@@ -6,9 +6,7 @@
 class UltrasonicSensor {
 public:
     UltrasonicSensor(int trig, int echo);
-
     int getDistance();
-
 private:
     int trig;
     int echo;
