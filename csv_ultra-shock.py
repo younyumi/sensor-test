@@ -35,6 +35,7 @@ with open('Ultra_shock_data.csv', mode='w', newline='') as file:
         if len(sensor_values) == 4 and len(shock_values) == 4:
             timestamp = time.strftime('%H:%M:%S', time.localtime())
             writer.writerow([timestamp] + sensor_values + shock_values)
+            file.flush()
             print([timestamp] + sensor_values + shock_values)
         
         # Read the next line to prevent misalignment
