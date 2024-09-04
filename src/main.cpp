@@ -1,108 +1,60 @@
 #include <Arduino.h>
-#include <TinyGPSPlus.h>
-#include <SoftwareSerial.h>
+#include "TinyGPS++.h"
 
-// Define which pins you will use on the Arduino to communicate with your GPS
-#define RXPIN 6
-#define TXPIN 5
+static const uint32_t GPSBaud = 9600; // GPS 모듈의 통신 속도
 
-// Set this value equal to the baud rate of your GPS
-#define GPSBAUD 9600
-
-// Create an instance of the TinyGPSPlus object
 TinyGPSPlus gps;
 
-// Initialize the SoftwareSerial library to the pins you defined above
-SoftwareSerial uart_gps(RXPIN, TXPIN);
-
-// Function prototypes
-void displayInfo();
-
-// Setup function
 void setup() {
-  // Initialize serial communication with the terminal
-  Serial.begin(9600);
-  // Initialize serial communication with the GPS module
-  uart_gps.begin(GPSBAUD);
-
-  // Print initial messages
-  Serial.println();
-  Serial.println("GPS Shield QuickStart Example Sketch");
-  Serial.println("       ...waiting for lock...           ");
-  Serial.println();
+  Serial.begin(9600); // 시리얼 모니터와의 통신 시작
+  Serial1.begin(GPSBaud); // GPS 모듈과의 통신 시작
 }
 
-// Main loop function
 void loop() {
-  // While there is data available on the RX pin...
-  while (uart_gps.available()) {
-    // Read the data into a variable
-    char c = uart_gps.read();
-    
-    // If there is a new valid sentence...
-    if (gps.encode(c)) {
-      // Display the GPS information
-      displayInfo();
+  // GPS 데이터가 도착할 때까지 기다림
+  static String ggaMessage = "";
+  
+  while (Serial1.available() > 0) {
+    char c = Serial1.read();
+
+    if (c == '\n') {
+      // GPGGA 메시지를 찾고, 파싱을 시작합니다.
+      if (ggaMessage.startsWith("$GPGGA")) {
+        // 위도와 경도를 추출합니다.
+        char* tokens[15]; // GGA 메시지를 ','를 기준으로 나누기 위한 배열
+        int tokenIndex = 0;
+        char* str = strtok(&ggaMessage[0], ",");
+
+        while (str != nullptr && tokenIndex < 15) {
+          tokens[tokenIndex++] = str;
+          str = strtok(nullptr, ",");
+        }
+
+        // 위도와 경도를 변환하여 출력합니다.
+        if (tokenIndex >= 6) {
+          // 위도 변환
+          float rawLatitude = atof(tokens[2]);
+          int latDegrees = (int)(rawLatitude / 100);
+          float latMinutes = rawLatitude - (latDegrees * 100);
+          float latitude = latDegrees + (latMinutes / 60.0);
+
+          // 경도 변환
+          float rawLongitude = atof(tokens[4]);
+          int lonDegrees = (int)(rawLongitude / 100);
+          float lonMinutes = rawLongitude - (lonDegrees * 100);
+          float longitude = lonDegrees + (lonMinutes / 60.0);
+
+          // 변환된 위도와 경도를 출력합니다.
+          Serial.print("Latitude: ");
+          Serial.print(latitude, 6);
+          Serial.print(", Longitude: ");
+          Serial.println(longitude, 6);
+        }
+      }
+
+      ggaMessage = ""; 
+    } else {
+      ggaMessage += c;
     }
   }
-}
-
-// Function to display GPS information
-void displayInfo() {
-  if (gps.location.isValid()) {
-    Serial.print("Lat/Long: ");
-    Serial.print(gps.location.lat(), 6);
-    Serial.print(", ");
-    Serial.println(gps.location.lng(), 6);
-  } else {
-    Serial.println("Location: INVALID");
-  }
-
-  if (gps.date.isValid()) {
-    Serial.print("Date: ");
-    Serial.print(gps.date.month());
-    Serial.print("/");
-    Serial.print(gps.date.day());
-    Serial.print("/");
-    Serial.println(gps.date.year());
-  } else {
-    Serial.println("Date: INVALID");
-  }
-
-  if (gps.time.isValid()) {
-    Serial.print("Time: ");
-    Serial.print(gps.time.hour());
-    Serial.print(":");
-    Serial.print(gps.time.minute());
-    Serial.print(":");
-    Serial.print(gps.time.second());
-    Serial.print(".");
-    Serial.println(gps.time.centisecond());
-  } else {
-    Serial.println("Time: INVALID");
-  }
-
-  if (gps.altitude.isValid()) {
-    Serial.print("Altitude (meters): ");
-    Serial.println(gps.altitude.meters());
-  } else {
-    Serial.println("Altitude: INVALID");
-  }
-
-  if (gps.course.isValid()) {
-    Serial.print("Course (degrees): ");
-    Serial.println(gps.course.deg());
-  } else {
-    Serial.println("Course: INVALID");
-  }
-
-  if (gps.speed.isValid()) {
-    Serial.print("Speed (kmph): ");
-    Serial.println(gps.speed.kmph());
-  } else {
-    Serial.println("Speed: INVALID");
-  }
-
-  Serial.println();
-  delay(1000);  // Adjust delay as needed
 }
