@@ -6,7 +6,7 @@ import time
 ser = serial.Serial('/dev/ttyACM0', 115200)
 
 # Open or create a CSV file to write the data
-with open('Ultra_shock_data.csv', mode='w', newline='') as file:
+with open('sensor_data.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     
     # Write the header with columns for timestamp, sensor distances, and shock detection
