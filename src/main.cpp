@@ -23,7 +23,7 @@ ShockSensor* shockSensors[num];
 
 void setup() {
     // Initialize serial communication
-    Serial.begin(9600);
+    Serial.begin(115200);
     
     // Initialize ultrasonic sensors
     ultrasonicSensors.begin();
@@ -59,5 +59,5 @@ void loop() {
     Serial.println("---------------------");
 
     // Delay before the next loop iteration
-    delay(500);
+    delay(100);
 }
