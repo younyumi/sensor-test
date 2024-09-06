@@ -15,7 +15,6 @@ private:
     double _lat;
     double _lng;
 };
-
 class TinyGPSPlus {
 public:
     TinyGPSPlus();
@@ -24,7 +23,6 @@ public:
     TinyGPSLocation location;
 
 private:
-    // 필요한 멤버 변수 및 메서드를 여기에 추가할 수 있습니다.
 };
 
 #endif // TINYGPSPLUS_H

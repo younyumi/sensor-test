@@ -196,9 +196,7 @@ void loop() {
         Serial.println("Waiting for GPS data...");
     }
 
-    // 구분선 출력
     Serial.println("---------------------");
 
-    // 다음 반복 전 딜레이
     delay(100);
 }

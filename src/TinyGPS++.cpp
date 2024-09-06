@@ -20,7 +20,6 @@ void TinyGPSPlus::encode(char c) {
             nmeaSentence[index] = '\0';
             isParsing = false;
 
-            // GPGGA 메시지를 파싱하여 위치 데이터를 추출
             if (strstr(nmeaSentence, "GPGGA")) {
                 char* tokens[15];
                 int tokenIndex = 0;
