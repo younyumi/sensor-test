@@ -12,8 +12,10 @@ void MPU6050::initialize() {
     Wire.endTransmission(true);
 }
 
-int16_t MPU6050::getAccelerationZ() {
-    return readRegister16(0x3F);  // Z-axis acceleration register
+float MPU6050::getAccelerationZ() {
+    int16_t rawZ = readRegister16(0x3F);  // Z-axis acceleration register
+    float zG = rawZ / 16384.0;  // Convert raw data to G-force (assuming ±2g range, 16384 LSB/g)
+    return zG * 9.80665;  // Convert G-force to m/s²
 }
 
 int16_t MPU6050::readRegister16(int reg) {

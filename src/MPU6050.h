@@ -7,7 +7,7 @@ class MPU6050 {
   public:
     MPU6050(int address);
     void initialize();
-    int16_t getAccelerationZ();
+    float getAccelerationZ();  // Modify return type to float for m/s²
 
   private:
     int deviceAddress;

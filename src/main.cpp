@@ -61,11 +61,11 @@ void loop() {
         Serial.println(shockSensors[i]->isShockDetected() ? "1" : "0");
     }
 
-    // 두 개의 MPU6050 센서 Z축 가속도 출력
+    // 두 개의 MPU6050 센서 Z축 가속도 출력 (m/s²로 변환된 값)
     for (int i = 0; i < num; i++) {
         Serial.print("MPU6050 Sensor ");
         Serial.print(i + 1);
-        Serial.print(" Z-axis: ");
+        Serial.print(" Z_acc (m/s^2): ");
         Serial.println(mpu6050Sensors[i]->getAccelerationZ());
     }
 
