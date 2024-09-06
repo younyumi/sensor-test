@@ -1,63 +1,77 @@
 #include <Arduino.h>
 #include "MultiUltrasonic.h"
-//#include "MPU6050.h"
+#include "MPU6050.h"  // MPU6050 라이브러리 포함
 #include "shocksensor.h"
 
-const int num = 4;  
+const int num = 2;  // 두 개의 MPU6050 센서를 사용하므로 num을 2로 설정
 
-int trig[num] = {2, 4, 6, 8};
-int echo[num] = {3, 5, 7, 9};
+int trig[4] = {2, 4, 6, 8};
+int echo[4] = {3, 5, 7, 9};
 
-// Define I2C addresses for each MPU6050 sensor (assuming unique addresses)
-//int mpuAddresses[num] = {0x68, 0x69, 0x6A, 0x6B};
+// 두 개의 MPU6050의 I2C 주소 (0x68, 0x69)
+int mpuAddresses[num] = {0x68, 0x69};
 
-// shock sensor pin number
-int shockPins[num] = {10, 11, 12, 13};
+// 충격 센서 핀 번호
+int shockPins[4] = {10, 11, 12, 13};
 
-//우측전륜, 좌측전륜, 우측후륜, 좌측후륜
-const char* sensorLabels[num] = {"FR", "FL", "RR", "RL"};
+// 센서 라벨
+const char* sensorLabels[4] = {"FR", "FL", "RR", "RL"};
 
-MultiUltrasonic ultrasonicSensors(trig, echo, num);
-//MPU6050* mpu6050Sensors[num];
-ShockSensor* shockSensors[num];
+MultiUltrasonic ultrasonicSensors(trig, echo, 4);
+MPU6050* mpu6050Sensors[num];  // 두 개의 MPU6050 센서
+ShockSensor* shockSensors[4];
 
 void setup() {
-    // Initialize serial communication
+    // 시리얼 통신 초기화
     Serial.begin(115200);
     
-    // Initialize ultrasonic sensors
+    // 초음파 센서 초기화
     ultrasonicSensors.begin();
 
-    // Initialize shock sensors
+    // MPU6050 센서 초기화
     for (int i = 0; i < num; i++) {
+        mpu6050Sensors[i] = new MPU6050(mpuAddresses[i]);
+        mpu6050Sensors[i]->initialize();
+    }
+
+    // 충격 센서 초기화
+    for (int i = 0; i < 4; i++) {
         shockSensors[i] = new ShockSensor(shockPins[i]);
     }
 }
 
 void loop() {
-    // Update distance measurements
+    // 초음파 거리 업데이트
     ultrasonicSensors.update();
 
-    // Print distance from each ultrasonic sensor
-    for (int i = 0; i < num; i++) {
+    // 각 초음파 센서의 거리 출력
+    for (int i = 0; i < 4; i++) {
         Serial.print("Ultrasonic Sensor ");
-        Serial.print(i + 1);
+        Serial.print(sensorLabels[i]);
         Serial.print(": ");
         Serial.print(ultrasonicSensors.getDistance(i));
         Serial.println(" cm");
     }
 
-    // Print shock detection status from each shock sensor
-    for (int i = 0; i < num; i++) {
+    // 각 충격 센서의 감지 상태 출력
+    for (int i = 0; i < 4; i++) {
         Serial.print("Shock Sensor ");
-        Serial.print(i + 1);
+        Serial.print(sensorLabels[i]);
         Serial.print(": ");
         Serial.println(shockSensors[i]->isShockDetected() ? "1" : "0");
     }
 
-    // Divider for readability
+    // 두 개의 MPU6050 센서 Z축 가속도 출력
+    for (int i = 0; i < num; i++) {
+        Serial.print("MPU6050 Sensor ");
+        Serial.print(i + 1);
+        Serial.print(" Z-axis: ");
+        Serial.println(mpu6050Sensors[i]->getAccelerationZ());
+    }
+
+    // 구분선 출력
     Serial.println("---------------------");
 
-    // Delay before the next loop iteration
+    // 다음 반복 전 딜레이
     delay(100);
 }
