@@ -7,7 +7,11 @@ class MPU6050 {
   public:
     MPU6050(int address);
     void initialize();
-    float getAccelerationZ();  // Modify return type to float for m/s²
+    float getAccelerationX();
+    float getAccelerationY();
+    float getAccelerationZ();
+    float calculateRoll(float ax, float ay, float az);
+    float calculatePitch(float ax, float ay, float az);
 
   private:
     int deviceAddress;

@@ -61,12 +61,23 @@ void loop() {
         Serial.println(shockSensors[i]->isShockDetected() ? "1" : "0");
     }
 
-    // 두 개의 MPU6050 센서 Z축 가속도 출력 (m/s²로 변환된 값)
+    // 두 개의 MPU6050 센서의 가속도와 Roll, Pitch 출력
     for (int i = 0; i < num; i++) {
+        float ax = mpu6050Sensors[i]->getAccelerationX();
+        float ay = mpu6050Sensors[i]->getAccelerationY();
+        float az = mpu6050Sensors[i]->getAccelerationZ();
+        
+        float roll = mpu6050Sensors[i]->calculateRoll(ax, ay, az);
+        float pitch = mpu6050Sensors[i]->calculatePitch(ax, ay, az);
+        
         Serial.print("MPU6050 Sensor ");
         Serial.print(i + 1);
         Serial.print(" Z_acc (m/s^2): ");
-        Serial.println(mpu6050Sensors[i]->getAccelerationZ());
+        Serial.println(az);
+        Serial.print("Roll: ");
+        Serial.println(roll);
+        Serial.print("Pitch: ");
+        Serial.println(pitch);
     }
 
     // 구분선 출력
