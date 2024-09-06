@@ -1,81 +1,60 @@
-# import pandas as pd
-# import matplotlib as plt
-# import numpy as np
-
-# data = pd.read_csv('sensor_data.csv')
-
-# data['Time'] = pd.to_datetime(data['Timestamp'])
-
-# def kalman_filter(data, Q, R):
-#     n= len(data)
-#     x_est =np.zeros(n)
-#     P = np.zeros(n)
-    
-#     x_est[0] = data[0]
-#     P[0] = 1.0
-    
-#     for k in range(1, n):
-#         # prediction
-#         x_pred = x_est[k-1]
-#         P_pred = P[k-1] + Q
-        
-#         # update
-#         K = P_pred / (P_pred + R)
-#         x_est[k] = x_pred + K * (data[k] - x_pred)
-#         P[k] = (1 - K) * P_pred
-        
-#     return x_est
-
-# Q = 0.01  # 프로세스 노이즈
-# R = 1.0   # 측정 노이즈
-# data['Filtered_Accel_Z'] = kalman_filter(data['Accel_Z'].values, Q, R)
-    
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# CSV 파일 경로 (자신의 파일 경로로 변경 가능)
+# CSV 파일 불러오기
 file_path = 'sensor_data.csv'
-
-# CSV 파일 로드
 sensor_data = pd.read_csv(file_path)
 
-# 컬럼명 변경 (Shock Sensors as FR, FL, RR, RL)
-sensor_data.rename(columns={
-    'Shock Sensor 1': 'Shock_FR',
-    'Shock Sensor 2': 'Shock_FL',
-    'Shock Sensor 3': 'Shock_RR',
-    'Shock Sensor 4': 'Shock_RL',
-    'Sensor1 (cm)': 'Sensor1',
-    'Sensor2 (cm)': 'Sensor2',
-    'Sensor3 (cm)': 'Sensor3',
-    'Sensor4 (cm)': 'Sensor4'
-}, inplace=True)
+# 필요한 컬럼들이 숫자형으로 변환되도록 설정
+sensor_data['MPU6050 1 Z_acc'] = pd.to_numeric(sensor_data['MPU6050 1 Z_acc'], errors='coerce')
+sensor_data['MPU6050 2 Z_acc'] = pd.to_numeric(sensor_data['MPU6050 2 Z_acc'], errors='coerce')
 
-# 'Timestamp' 컬럼을 시간 객체로 변환
-sensor_data['Timestamp'] = pd.to_datetime(sensor_data['Timestamp'], format='%H:%M:%S')
+# Z축 가속도 변화 계산
+sensor_data['MPU6050 1 Z_acc_change'] = sensor_data['MPU6050 1 Z_acc'].diff().abs()
+sensor_data['MPU6050 2 Z_acc_change'] = sensor_data['MPU6050 2 Z_acc'].diff().abs()
 
-# 센서 거리 시각화
-fig, ax1 = plt.subplots(figsize=(12, 6))
+# 초음파 센서의 도로 변화 감지 계산
+sensor_data['Ultrasonic 1 change'] = sensor_data['Ultrasonic 1 (cm)'].diff().abs()
+sensor_data['Ultrasonic 2 change'] = sensor_data['Ultrasonic 2 (cm)'].diff().abs()
+sensor_data['Ultrasonic 3 change'] = sensor_data['Ultrasonic 3 (cm)'].diff().abs()
+sensor_data['Ultrasonic 4 change'] = sensor_data['Ultrasonic 4 (cm)'].diff().abs()
 
-# 첫 번째 Y축에 센서 거리 값 시각화
-ax1.set_xlabel('Time')
-ax1.set_ylabel('Distance (cm)')
-ax1.plot(sensor_data['Timestamp'], sensor_data['Sensor1'], label='Sensor1 (FR)', color='blue')
-ax1.plot(sensor_data['Timestamp'], sensor_data['Sensor2'], label='Sensor2 (FL)', color='green')
-ax1.plot(sensor_data['Timestamp'], sensor_data['Sensor3'], label='Sensor3 (RR)', color='red')
-ax1.plot(sensor_data['Timestamp'], sensor_data['Sensor4'], label='Sensor4 (RL)', color='orange')
-ax1.legend(loc='upper left')
+# 포트홀 감지 임계값 설정
+z_acc_threshold = 1.5  # MPU6050 Z축 가속도 변화 임계값
+ultrasonic_threshold = 50  # 초음파 센서 거리 변화 임계값 (단위: cm)
+shock_trigger_value = 1  # 충격 감지 센서 활성화 값
 
-# 두 번째 Y축에 충격 감지 시각화
-ax2 = ax1.twinx()
-ax2.set_ylabel('Shock Detection')
-ax2.plot(sensor_data['Timestamp'], sensor_data['Shock_FR'], label='Shock FR', color='blue', linestyle='--')
-ax2.plot(sensor_data['Timestamp'], sensor_data['Shock_FL'], label='Shock FL', color='green', linestyle='--')
-ax2.plot(sensor_data['Timestamp'], sensor_data['Shock_RR'], label='Shock RR', color='red', linestyle='--')
-ax2.plot(sensor_data['Timestamp'], sensor_data['Shock_RL'], label='Shock RL', color='orange', linestyle='--')
-ax2.legend(loc='upper right')
+# 포트홀 감지 조건 정의
+pothole_data = sensor_data[
+    (sensor_data['Shock FR'] >= shock_trigger_value) |
+    (sensor_data['Shock FL'] >= shock_trigger_value) |
+    (sensor_data['Shock RR'] >= shock_trigger_value) |
+    (sensor_data['Shock RL'] >= shock_trigger_value) |
+    (sensor_data['MPU6050 1 Z_acc_change'] > z_acc_threshold) |
+    (sensor_data['MPU6050 2 Z_acc_change'] > z_acc_threshold) |
+    (sensor_data['Ultrasonic 1 change'] > ultrasonic_threshold) |
+    (sensor_data['Ultrasonic 2 change'] > ultrasonic_threshold) |
+    (sensor_data['Ultrasonic 3 change'] > ultrasonic_threshold) |
+    (sensor_data['Ultrasonic 4 change'] > ultrasonic_threshold)
+]
 
-# 그래프 제목 설정 및 표시
-plt.title('Distance and Shock Detection over Time')
-plt.tight_layout()
+# GPS 값이 0이 아닌 행만 필터링
+pothole_data = pothole_data[(pothole_data['Latitude'] != 0) & (pothole_data['Longitude'] != 0)]
+
+# 포트홀 감지 위치 시각화
+plt.figure(figsize=(8, 6))
+
+# 포트홀 감지 위치 표시
+plt.scatter(pothole_data['Longitude'], pothole_data['Latitude'], c='red', label='Pothole Detected', s=100)
+
+# 그래프 제목과 축 레이블 설정
+plt.title('Pothole Detection Locations Based on Sensor Data')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+
+# 범례 추가
+plt.legend()
+
+# 그래프 보여주기
+plt.grid(True)
 plt.show()
