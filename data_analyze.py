@@ -20,8 +20,8 @@ sensor_data['Ultrasonic 3 change'] = sensor_data['Ultrasonic 3 (cm)'].diff().abs
 sensor_data['Ultrasonic 4 change'] = sensor_data['Ultrasonic 4 (cm)'].diff().abs()
 
 # 포트홀 감지 임계값 설정
-z_acc_threshold = 1.0  # MPU6050 Z축 가속도 변화 임계값
-ultrasonic_threshold = 1  # 초음파 센서 거리 변화 임계값 (단위: cm)
+z_acc_threshold = 10.0  # MPU6050 Z축 가속도 변화 임계값
+ultrasonic_threshold = 10  # 초음파 센서 거리 변화 임계값 (단위: cm)
 shock_trigger_value = 1  # 충격 감지 센서 활성화 값
 
 # 포트홀 감지 조건 정의
@@ -51,6 +51,9 @@ plt.scatter(pothole_data['Longitude'], pothole_data['Latitude'], c='red', label=
 plt.title('Pothole Detection Locations Based on Sensor Data')
 plt.xlabel('Longitude')
 plt.ylabel('Latitude')
+
+plt.xlim([127.048860, 127.048880])
+plt.ylim([38.451650, 38.451660])
 
 # 범례 추가
 plt.legend()
