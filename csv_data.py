@@ -34,30 +34,35 @@ with open('sensor_data.csv', mode='w', newline='') as file:
                 # 초음파 센서 2~4 데이터 수집
                 for i in range(2, 5):
                     line = ser.readline().decode('utf-8').strip()
-                    distance = line.split(": ")[1]
+                    if ": " in line:
+                        distance = line.split(": ")[1]
                     data.append(distance)
 
                 # Collect shock sensor data
                 for i in range(4):
                     line = ser.readline().decode('utf-8').strip()
-                    shock_status = line.split(": ")[1]
+                    if ": " in line:
+                        shock_status = line.split(": ")[1]
                     data.append(shock_status)
 
                 # Collect MPU6050 sensor data
                 for i in range(1, 3):
                     # Z_acc
                     line = ser.readline().decode('utf-8').strip()
-                    z_acc = line.split(": ")[1]
+                    if ": " in line:
+                        z_acc = line.split(": ")[1]
                     data.append(z_acc)
 
                     # Roll
                     line = ser.readline().decode('utf-8').strip()
-                    roll = line.split(": ")[1]
+                    if ": " in line:
+                        roll = line.split(": ")[1]
                     data.append(roll)
 
                     # Pitch
                     line = ser.readline().decode('utf-8').strip()
-                    pitch = line.split(": ")[1]
+                    if ": " in line:
+                        pitch = line.split(": ")[1]
                     data.append(pitch)
 
                 # Read the GPS data if available
@@ -75,12 +80,11 @@ with open('sensor_data.csv', mode='w', newline='') as file:
                 print(data)  # Optionally print to console for debugging
 
             # Optional: Insert a small delay to avoid overwhelming the serial port
-            time.sleep(0.1)
+            time.sleep(0.2)
 
         except KeyboardInterrupt:
             print("Program interrupted")
             break
-
 
 
 
