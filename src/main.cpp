@@ -15,7 +15,7 @@ int echo[4] = {3, 5, 7, 9};
 int mpuAddresses[num] = {0x68, 0x69};
 
 // 충격 센서 핀 번호
-int shockPins[4] = {10, 11, 12, 13};
+int shockPins[4] = {40, 41, 42, 43};
 
 // 센서 라벨
 const char* sensorLabels[4] = {"FR", "FL", "RR", "RL"};
@@ -95,5 +95,5 @@ void loop() {
 
     Serial.println("---------------------");
 
-    delay(100);
+    delay(500);
 }
