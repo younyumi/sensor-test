@@ -27,17 +27,14 @@ void setup() {
 }
 
 void loop() {
-  if (radio.available()) {  // 수신 데이터가 있는지 확인
-    char text[32] = {0};    // 수신할 데이터를 저장할 배열
-    radio.read(&text, sizeof(text));  // 데이터 수신
-    Serial.print("Received message: ");
-    Serial.println(text);
-
-    if (strcmp(text, "pothole detected") == 0) {
-      // LCD에 메시지 출력
-      lcd.clear();
-      lcd.setCursor(0, 0);
-      lcd.print("Pothole Detected");
-    }
+  if (radio.available()) {
+  char text[32] = {0};
+  radio.read(&text, sizeof(text));
+  
+  if (strcmp(text, "pothole detected") == 0) {
+    lcd.setCursor(0, 0);  // 커서를 이동하여 기존 글씨 덮어쓰기
+    lcd.print("Pothole Detected");
   }
+}
+
 }

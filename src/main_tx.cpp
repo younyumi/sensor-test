@@ -21,7 +21,7 @@ void setup() {
   }
 
   radio.openWritingPipe(address);
-  radio.setPALevel(RF24_PA_LOW);
+  radio.setPALevel(RF24_PA_HIGH);
   radio.stopListening();
 }
 
