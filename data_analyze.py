@@ -6,12 +6,12 @@ file_path = 'sensor_data.csv'
 sensor_data = pd.read_csv(file_path)
 
 # 필요한 컬럼들이 숫자형으로 변환되도록 설정
-sensor_data['MPU6050 1 Z_acc'] = pd.to_numeric(sensor_data['MPU6050 1 Z_acc'], errors='coerce')
-sensor_data['MPU6050 2 Z_acc'] = pd.to_numeric(sensor_data['MPU6050 2 Z_acc'], errors='coerce')
+sensor_data['Front Z_acc'] = pd.to_numeric(sensor_data['Front Z_acc'], errors='coerce')
+sensor_data['Rear Z_acc'] = pd.to_numeric(sensor_data['Rear Z_acc'], errors='coerce')
 
-# Z축 가속도 변화 계산
-sensor_data['MPU6050 1 Z_acc_change'] = sensor_data['MPU6050 1 Z_acc'].diff().abs()
-sensor_data['MPU6050 2 Z_acc_change'] = sensor_data['MPU6050 2 Z_acc'].diff().abs()
+# Z축 가속도 변화 - 이전값과의 차이 계산 
+sensor_data['Front Z_acc_change'] = sensor_data['Front Z_acc'].diff().abs()
+sensor_data['Rear Z_acc_change'] = sensor_data['Rear Z_acc'].diff().abs()
 
 # 초음파 센서의 도로 변화 감지 계산
 sensor_data['Ultrasonic 1 change'] = sensor_data['Ultrasonic 1 (cm)'].diff().abs()
@@ -20,18 +20,18 @@ sensor_data['Ultrasonic 3 change'] = sensor_data['Ultrasonic 3 (cm)'].diff().abs
 sensor_data['Ultrasonic 4 change'] = sensor_data['Ultrasonic 4 (cm)'].diff().abs()
 
 # 포트홀 감지 임계값 설정
-z_acc_threshold = 1.0  # MPU6050 Z축 가속도 변화 임계값
-ultrasonic_threshold = 1  # 초음파 센서 거리 변화 임계값 (단위: cm)
+z_acc_threshold = 5.0  # MPU6050 Z축 가속도 변화 임계값
+ultrasonic_threshold = 5  # 초음파 센서 거리 변화 임계값 (단위: cm)
 shock_trigger_value = 1  # 충격 감지 센서 활성화 값
 
-# 포트홀 감지 조건 정의
+# 포트홀 감지 조건
 pothole_data = sensor_data[
     (sensor_data['Shock FR'] >= shock_trigger_value) |
     (sensor_data['Shock FL'] >= shock_trigger_value) |
     (sensor_data['Shock RR'] >= shock_trigger_value) |
     (sensor_data['Shock RL'] >= shock_trigger_value) |
-    (sensor_data['MPU6050 1 Z_acc_change'] > z_acc_threshold) |
-    (sensor_data['MPU6050 2 Z_acc_change'] > z_acc_threshold) |
+    (sensor_data['Front Z_acc_change'] > z_acc_threshold) |
+    (sensor_data['Rear Z_acc_change'] > z_acc_threshold) |
     (sensor_data['Ultrasonic 1 change'] > ultrasonic_threshold) |
     (sensor_data['Ultrasonic 2 change'] > ultrasonic_threshold) |
     (sensor_data['Ultrasonic 3 change'] > ultrasonic_threshold) |

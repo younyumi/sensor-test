@@ -1,4 +1,4 @@
-Timestamp,Ultrasonic 1 (cm),Ultrasonic 2 (cm),Ultrasonic 3 (cm),Ultrasonic 4 (cm),Shock FR,Shock FL,Shock RR,Shock RL,MPU6050 1 Z_acc,MPU6050 1 Roll,MPU6050 1 Pitch,MPU6050 2 Z_acc,MPU6050 2 Roll,MPU6050 2 Pitch,Latitude,Longitude
+Timestamp,Ultrasonic 1 (cm),Ultrasonic 2 (cm),Ultrasonic 3 (cm),Ultrasonic 4 (cm),Shock FR,Shock FL,Shock RR,Shock RL,Front Z_acc,Front Roll,Front Pitch,Rear Z_acc,Rear Roll,Rear Pitch,Latitude,Longitude
 18:03:50,24.00,25.00,24.00,24.00,0,0,0,0,9.95,-0.34,0.95,9.98,0.77,1.95,0.000000,0.000000
 18:03:51,24.00,25.00,24.00,23.00,0,0,0,0,9.87,-0.26,0.94,10.01,0.52,2.01,0.000000,0.000000
 18:03:51,24.00,24.00,24.00,24.00,0,0,0,0,9.94,-0.39,0.88,9.99,0.58,1.99,0.000000,0.000000
