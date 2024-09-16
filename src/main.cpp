@@ -12,7 +12,7 @@ int trig[4] = {2, 4, 6, 8};
 int echo[4] = {3, 5, 7, 9};
 
 // 두 개의 MPU6050의 I2C 주소 (0x68, 0x69)
-int mpuAddresses[num] = {0x68, 0x69};
+int mpuAddresses[num] = {0x69, 0x68};
 
 // 충격 센서 핀 번호
 int shockPins[4] = {40, 41, 42, 43};
