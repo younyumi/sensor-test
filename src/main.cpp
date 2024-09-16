@@ -11,7 +11,7 @@ MultiUltrasonic ultrasonicSensors(trig, echo, num);
 
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
     ultrasonicSensors.begin();
 }
 
@@ -28,5 +28,5 @@ void loop() {
     }
 
     Serial.println("---------------------");
-    delay(100);
+    delay(500);
 }
