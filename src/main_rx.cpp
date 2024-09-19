@@ -49,7 +49,7 @@ void loop() {
     }
   }
 
-  // 메시지 표시한 후 지우기
+  // 메시지를 표시한 후 지우기
   if (displayMessage && (currentMillis - messageStartTime >= displayDuration)) {
     lcd.clear();
     displayMessage = false;  // 메시지 표시 종료
