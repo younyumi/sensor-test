@@ -42,7 +42,7 @@ void loop() {
 
   // 거리 변화가 5cm 이상이거나 충격이 감지된 경우
   if ((distance < 100 && distance > 5) || shockDetected == HIGH) {
-    const char text[] = "pothole detected";
+    const char text[] = "Warning! Pothole";
     bool success = radio.write(&text, sizeof(text));
     
     if (success) {
