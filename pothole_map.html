@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b0136835d03f440f5b5744b5e837933e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b0136835d03f440f5b5744b5e837933e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b0136835d03f440f5b5744b5e837933e = L.map(
+                "map_b0136835d03f440f5b5744b5e837933e",
+                {
+                    center: [37.2934, 126.9768],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 18,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a31c525e7baccf77d0cef94bab99e6e5 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_a31c525e7baccf77d0cef94bab99e6e5.addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+            var circle_marker_67e1638aac083d417bea078db75cee41 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_e68ee7ad2e9c89028fa1b86e00029da7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_67dac132866d711c049668fdb4943b6a = $(`<div id="html_67dac132866d711c049668fdb4943b6a" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_e68ee7ad2e9c89028fa1b86e00029da7.setContent(html_67dac132866d711c049668fdb4943b6a);
+            
+        
+
+        circle_marker_67e1638aac083d417bea078db75cee41.bindPopup(popup_e68ee7ad2e9c89028fa1b86e00029da7)
+        ;
+
+        
+    
+    
+            var circle_marker_37933cf1409a495aeb3e1a66ce54e70a = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_5b05716838d14afddfd3bd5a0d2bf011 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_83e3498170c5d06e8d45d99f3f52b6b4 = $(`<div id="html_83e3498170c5d06e8d45d99f3f52b6b4" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_5b05716838d14afddfd3bd5a0d2bf011.setContent(html_83e3498170c5d06e8d45d99f3f52b6b4);
+            
+        
+
+        circle_marker_37933cf1409a495aeb3e1a66ce54e70a.bindPopup(popup_5b05716838d14afddfd3bd5a0d2bf011)
+        ;
+
+        
+    
+    
+            var circle_marker_31f9dcc86259a1ea33a2fc9a94c5abe0 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_76cbc73ecd27916a3209dd3f04b8538f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cb533446ee599f19205a4a76d6687adc = $(`<div id="html_cb533446ee599f19205a4a76d6687adc" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_76cbc73ecd27916a3209dd3f04b8538f.setContent(html_cb533446ee599f19205a4a76d6687adc);
+            
+        
+
+        circle_marker_31f9dcc86259a1ea33a2fc9a94c5abe0.bindPopup(popup_76cbc73ecd27916a3209dd3f04b8538f)
+        ;
+
+        
+    
+    
+            var circle_marker_5f9427ba5b58b2eff277f0722f51df14 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_47119d0e6272008da1d3f4e53ab42517 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_307fa9bd167f3050150c94b0b1dc651d = $(`<div id="html_307fa9bd167f3050150c94b0b1dc651d" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_47119d0e6272008da1d3f4e53ab42517.setContent(html_307fa9bd167f3050150c94b0b1dc651d);
+            
+        
+
+        circle_marker_5f9427ba5b58b2eff277f0722f51df14.bindPopup(popup_47119d0e6272008da1d3f4e53ab42517)
+        ;
+
+        
+    
+    
+            var circle_marker_aab0d1e56cf9caec7d6bc1f9395d19b8 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_d373979ef7b43f18f311e4605aa09b2d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f33160c3b080367859f52ca6a214cb46 = $(`<div id="html_f33160c3b080367859f52ca6a214cb46" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_d373979ef7b43f18f311e4605aa09b2d.setContent(html_f33160c3b080367859f52ca6a214cb46);
+            
+        
+
+        circle_marker_aab0d1e56cf9caec7d6bc1f9395d19b8.bindPopup(popup_d373979ef7b43f18f311e4605aa09b2d)
+        ;
+
+        
+    
+    
+            var circle_marker_d1997c169d1fda08a9b4ff318cb509a0 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_598563dae9e27664335537491659a9b5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c0ffdc64ad6914e9b41af3850c4ddce5 = $(`<div id="html_c0ffdc64ad6914e9b41af3850c4ddce5" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_598563dae9e27664335537491659a9b5.setContent(html_c0ffdc64ad6914e9b41af3850c4ddce5);
+            
+        
+
+        circle_marker_d1997c169d1fda08a9b4ff318cb509a0.bindPopup(popup_598563dae9e27664335537491659a9b5)
+        ;
+
+        
+    
+    
+            var circle_marker_5cab94a12f98d5424116fadc436a20b8 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_225279938000647476bb1e42206be212 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b3ef2f09b25037508b853b6f9bc7e2c5 = $(`<div id="html_b3ef2f09b25037508b853b6f9bc7e2c5" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_225279938000647476bb1e42206be212.setContent(html_b3ef2f09b25037508b853b6f9bc7e2c5);
+            
+        
+
+        circle_marker_5cab94a12f98d5424116fadc436a20b8.bindPopup(popup_225279938000647476bb1e42206be212)
+        ;
+
+        
+    
+    
+            var circle_marker_a6751a2d372ff3249e527a2687736599 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_3a3efc7caa07fd3357f4d76ba90c1efe = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8cd988b2e08f8efba368498c778db9b1 = $(`<div id="html_8cd988b2e08f8efba368498c778db9b1" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_3a3efc7caa07fd3357f4d76ba90c1efe.setContent(html_8cd988b2e08f8efba368498c778db9b1);
+            
+        
+
+        circle_marker_a6751a2d372ff3249e527a2687736599.bindPopup(popup_3a3efc7caa07fd3357f4d76ba90c1efe)
+        ;
+
+        
+    
+    
+            var circle_marker_3a5e19950d6f915d55f64f87a922ca04 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_f97637d415e37a0d49e43896544d014d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cf9b2e495fe1d3d0fa55cf7ae8ad0c23 = $(`<div id="html_cf9b2e495fe1d3d0fa55cf7ae8ad0c23" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_f97637d415e37a0d49e43896544d014d.setContent(html_cf9b2e495fe1d3d0fa55cf7ae8ad0c23);
+            
+        
+
+        circle_marker_3a5e19950d6f915d55f64f87a922ca04.bindPopup(popup_f97637d415e37a0d49e43896544d014d)
+        ;
+
+        
+    
+    
+            var circle_marker_fd39a29c750df27fe95ee2a437e47d4e = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_21238ad20bfb9c472d9c2aecc1ff7cd7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_de5836cf41bed059c1c66322f7f566f7 = $(`<div id="html_de5836cf41bed059c1c66322f7f566f7" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_21238ad20bfb9c472d9c2aecc1ff7cd7.setContent(html_de5836cf41bed059c1c66322f7f566f7);
+            
+        
+
+        circle_marker_fd39a29c750df27fe95ee2a437e47d4e.bindPopup(popup_21238ad20bfb9c472d9c2aecc1ff7cd7)
+        ;
+
+        
+    
+    
+            var circle_marker_d6bd39e3bb44b106f84ad6a230b78fdb = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_f62f4f58e93419d03f1624d15ef69cd3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_89f2b442bf672f36afd99e3f5e7ac239 = $(`<div id="html_89f2b442bf672f36afd99e3f5e7ac239" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_f62f4f58e93419d03f1624d15ef69cd3.setContent(html_89f2b442bf672f36afd99e3f5e7ac239);
+            
+        
+
+        circle_marker_d6bd39e3bb44b106f84ad6a230b78fdb.bindPopup(popup_f62f4f58e93419d03f1624d15ef69cd3)
+        ;
+
+        
+    
+    
+            var circle_marker_0ec4380f4cc945408cd9cb59386db6ba = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_db5163285046027be988aabb65949921 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e0e6f173b7d3df982629ac33125c5054 = $(`<div id="html_e0e6f173b7d3df982629ac33125c5054" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_db5163285046027be988aabb65949921.setContent(html_e0e6f173b7d3df982629ac33125c5054);
+            
+        
+
+        circle_marker_0ec4380f4cc945408cd9cb59386db6ba.bindPopup(popup_db5163285046027be988aabb65949921)
+        ;
+
+        
+    
+    
+            var circle_marker_65a379bf39136dec1a159912ae9e3878 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_7457f0838fbb9b9c55ded88813dd8abb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9229c2de3149b713ea29ee8a150b07b0 = $(`<div id="html_9229c2de3149b713ea29ee8a150b07b0" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_7457f0838fbb9b9c55ded88813dd8abb.setContent(html_9229c2de3149b713ea29ee8a150b07b0);
+            
+        
+
+        circle_marker_65a379bf39136dec1a159912ae9e3878.bindPopup(popup_7457f0838fbb9b9c55ded88813dd8abb)
+        ;
+
+        
+    
+    
+            var circle_marker_b1ce825149954fee8220e8fa6bbabf5c = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_891e195bc8906b5efe78a9999990ba33 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c2152a5943b70d0dbd2cfd99be65f4bb = $(`<div id="html_c2152a5943b70d0dbd2cfd99be65f4bb" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_891e195bc8906b5efe78a9999990ba33.setContent(html_c2152a5943b70d0dbd2cfd99be65f4bb);
+            
+        
+
+        circle_marker_b1ce825149954fee8220e8fa6bbabf5c.bindPopup(popup_891e195bc8906b5efe78a9999990ba33)
+        ;
+
+        
+    
+    
+            var circle_marker_d7337352f5d109cee3a50a12cb019283 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_3bae03171517749678b9e41554ef0fe6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e1b74cb929269358a669689a020428c4 = $(`<div id="html_e1b74cb929269358a669689a020428c4" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_3bae03171517749678b9e41554ef0fe6.setContent(html_e1b74cb929269358a669689a020428c4);
+            
+        
+
+        circle_marker_d7337352f5d109cee3a50a12cb019283.bindPopup(popup_3bae03171517749678b9e41554ef0fe6)
+        ;
+
+        
+    
+    
+            var circle_marker_62ee7db0a3c66d02d88f5ce61bf3e812 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_5561775ecc86cd875ab029f78a8a3c2b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4c1c1557071c0e76d241774eb35d28ce = $(`<div id="html_4c1c1557071c0e76d241774eb35d28ce" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_5561775ecc86cd875ab029f78a8a3c2b.setContent(html_4c1c1557071c0e76d241774eb35d28ce);
+            
+        
+
+        circle_marker_62ee7db0a3c66d02d88f5ce61bf3e812.bindPopup(popup_5561775ecc86cd875ab029f78a8a3c2b)
+        ;
+
+        
+    
+    
+            var circle_marker_c5bd4492f10a289889bdb349ca631817 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_490496c8a2c48253e62ef2d423c07d7b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3302f5df5d4f4b08083d2e1b16c3f20b = $(`<div id="html_3302f5df5d4f4b08083d2e1b16c3f20b" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_490496c8a2c48253e62ef2d423c07d7b.setContent(html_3302f5df5d4f4b08083d2e1b16c3f20b);
+            
+        
+
+        circle_marker_c5bd4492f10a289889bdb349ca631817.bindPopup(popup_490496c8a2c48253e62ef2d423c07d7b)
+        ;
+
+        
+    
+    
+            var circle_marker_be8107a47fa29c585955bc28cc599093 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_a8cf83a12ad1df8355d6df48da5e075f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_025dbdc36a570bf96a40d3bdcc96a127 = $(`<div id="html_025dbdc36a570bf96a40d3bdcc96a127" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_a8cf83a12ad1df8355d6df48da5e075f.setContent(html_025dbdc36a570bf96a40d3bdcc96a127);
+            
+        
+
+        circle_marker_be8107a47fa29c585955bc28cc599093.bindPopup(popup_a8cf83a12ad1df8355d6df48da5e075f)
+        ;
+
+        
+    
+    
+            var circle_marker_234768d15b335c9cee820a385b9937b3 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_0d4947bea84011a1011cbfbe441a9003 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1652800154d7b520513e07c5d367d771 = $(`<div id="html_1652800154d7b520513e07c5d367d771" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_0d4947bea84011a1011cbfbe441a9003.setContent(html_1652800154d7b520513e07c5d367d771);
+            
+        
+
+        circle_marker_234768d15b335c9cee820a385b9937b3.bindPopup(popup_0d4947bea84011a1011cbfbe441a9003)
+        ;
+
+        
+    
+    
+            var circle_marker_7d26318d4071f07e616e4e6009ece771 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_583d3d17140e2aac58ff8ea9916ea746 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_207389e97afceeefe6a537bc37f0af24 = $(`<div id="html_207389e97afceeefe6a537bc37f0af24" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_583d3d17140e2aac58ff8ea9916ea746.setContent(html_207389e97afceeefe6a537bc37f0af24);
+            
+        
+
+        circle_marker_7d26318d4071f07e616e4e6009ece771.bindPopup(popup_583d3d17140e2aac58ff8ea9916ea746)
+        ;
+
+        
+    
+    
+            var circle_marker_3954ee8fa4ec1987bb808e8e2fc61610 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_808b392cc974207ec6624a9d11102078 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0c0e130bb1fcbfc8ef4818ed799e8bec = $(`<div id="html_0c0e130bb1fcbfc8ef4818ed799e8bec" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_808b392cc974207ec6624a9d11102078.setContent(html_0c0e130bb1fcbfc8ef4818ed799e8bec);
+            
+        
+
+        circle_marker_3954ee8fa4ec1987bb808e8e2fc61610.bindPopup(popup_808b392cc974207ec6624a9d11102078)
+        ;
+
+        
+    
+    
+            var circle_marker_3e6ed0a092b6052a48a1b60b8e9de7a8 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_d3ed04864e77c0035e26ed8fc7ee078f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1afa134385b4e44119877acca2ea8464 = $(`<div id="html_1afa134385b4e44119877acca2ea8464" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_d3ed04864e77c0035e26ed8fc7ee078f.setContent(html_1afa134385b4e44119877acca2ea8464);
+            
+        
+
+        circle_marker_3e6ed0a092b6052a48a1b60b8e9de7a8.bindPopup(popup_d3ed04864e77c0035e26ed8fc7ee078f)
+        ;
+
+        
+    
+    
+            var circle_marker_0c5ea3aaa47419e52e798ba603151b5b = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_3bdc5644d198cde30a4c248d81c26402 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_715b92a586dc050ceefc89387333a938 = $(`<div id="html_715b92a586dc050ceefc89387333a938" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_3bdc5644d198cde30a4c248d81c26402.setContent(html_715b92a586dc050ceefc89387333a938);
+            
+        
+
+        circle_marker_0c5ea3aaa47419e52e798ba603151b5b.bindPopup(popup_3bdc5644d198cde30a4c248d81c26402)
+        ;
+
+        
+    
+    
+            var circle_marker_0c6c06a4eef6c734c7e97a663c8c24f5 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_e3ad21fecee57ad62f55a814b97db6f0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c5ea80607aee648516cf29eaa36ca576 = $(`<div id="html_c5ea80607aee648516cf29eaa36ca576" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_e3ad21fecee57ad62f55a814b97db6f0.setContent(html_c5ea80607aee648516cf29eaa36ca576);
+            
+        
+
+        circle_marker_0c6c06a4eef6c734c7e97a663c8c24f5.bindPopup(popup_e3ad21fecee57ad62f55a814b97db6f0)
+        ;
+
+        
+    
+    
+            var circle_marker_a57223ad7b1a566343f60b1aa4bf3dfc = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_3ddaecfdb064b66bcb4ee62ea5a79a0a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5594c07f603a0205380d67b145689a8e = $(`<div id="html_5594c07f603a0205380d67b145689a8e" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_3ddaecfdb064b66bcb4ee62ea5a79a0a.setContent(html_5594c07f603a0205380d67b145689a8e);
+            
+        
+
+        circle_marker_a57223ad7b1a566343f60b1aa4bf3dfc.bindPopup(popup_3ddaecfdb064b66bcb4ee62ea5a79a0a)
+        ;
+
+        
+    
+    
+            var circle_marker_1af79eeedc2a9cad8fe3f2fb82ef25bb = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_83cfc3f47b1d15ab7cef1cac337cf166 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f59d39a855998195cfeb2ac6c800f90c = $(`<div id="html_f59d39a855998195cfeb2ac6c800f90c" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_83cfc3f47b1d15ab7cef1cac337cf166.setContent(html_f59d39a855998195cfeb2ac6c800f90c);
+            
+        
+
+        circle_marker_1af79eeedc2a9cad8fe3f2fb82ef25bb.bindPopup(popup_83cfc3f47b1d15ab7cef1cac337cf166)
+        ;
+
+        
+    
+    
+            var circle_marker_7c4230aebb5a9ad4aab15e0b9673303f = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_54a8d52b7d29c2f31edf12daf95ea488 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_caa632b52caa000e3ad24d3dac7c7775 = $(`<div id="html_caa632b52caa000e3ad24d3dac7c7775" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_54a8d52b7d29c2f31edf12daf95ea488.setContent(html_caa632b52caa000e3ad24d3dac7c7775);
+            
+        
+
+        circle_marker_7c4230aebb5a9ad4aab15e0b9673303f.bindPopup(popup_54a8d52b7d29c2f31edf12daf95ea488)
+        ;
+
+        
+    
+    
+            var circle_marker_b8bec2c301aefdf35c5442f5b84c1012 = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_1e35c64cd0c8afee30ac853825547e45 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3460835265d5d08bbda534d54ee890e9 = $(`<div id="html_3460835265d5d08bbda534d54ee890e9" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_1e35c64cd0c8afee30ac853825547e45.setContent(html_3460835265d5d08bbda534d54ee890e9);
+            
+        
+
+        circle_marker_b8bec2c301aefdf35c5442f5b84c1012.bindPopup(popup_1e35c64cd0c8afee30ac853825547e45)
+        ;
+
+        
+    
+    
+            var circle_marker_772aa4d5f69092d9d10da8b88543f4df = L.circleMarker(
+                [37.292773, 126.977276],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_05e75e870dc770c1f1e8a63a44e0ab1a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9aded76788b93134f966048f9df8607f = $(`<div id="html_9aded76788b93134f966048f9df8607f" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_05e75e870dc770c1f1e8a63a44e0ab1a.setContent(html_9aded76788b93134f966048f9df8607f);
+            
+        
+
+        circle_marker_772aa4d5f69092d9d10da8b88543f4df.bindPopup(popup_05e75e870dc770c1f1e8a63a44e0ab1a)
+        ;
+
+        
+    
+    
+            var circle_marker_70f4da26e5fe7e36573574430e1cfa0c = L.circleMarker(
+                [37.292773, 126.977277],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_061daea239c0aff9a1367a310d6064b7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_db265cd4bcc35e00a2a332036ade9db1 = $(`<div id="html_db265cd4bcc35e00a2a332036ade9db1" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_061daea239c0aff9a1367a310d6064b7.setContent(html_db265cd4bcc35e00a2a332036ade9db1);
+            
+        
+
+        circle_marker_70f4da26e5fe7e36573574430e1cfa0c.bindPopup(popup_061daea239c0aff9a1367a310d6064b7)
+        ;
+
+        
+    
+    
+            var circle_marker_a09e92650e493ff5811dda594f8ba2a7 = L.circleMarker(
+                [37.292773, 126.977277],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_647387b3c9f69099bda755c39c0469e7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_30f563b39af691f92f9a735ea9c6201f = $(`<div id="html_30f563b39af691f92f9a735ea9c6201f" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_647387b3c9f69099bda755c39c0469e7.setContent(html_30f563b39af691f92f9a735ea9c6201f);
+            
+        
+
+        circle_marker_a09e92650e493ff5811dda594f8ba2a7.bindPopup(popup_647387b3c9f69099bda755c39c0469e7)
+        ;
+
+        
+    
+    
+            var circle_marker_6adc83acd670d7d3e76219e9cc84fce2 = L.circleMarker(
+                [37.292773, 126.977277],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_c4b86e6ef233fb4d3c51bb5dd2da1400 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_23b210ce0b981f6c2cce1fcf2d28d339 = $(`<div id="html_23b210ce0b981f6c2cce1fcf2d28d339" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_c4b86e6ef233fb4d3c51bb5dd2da1400.setContent(html_23b210ce0b981f6c2cce1fcf2d28d339);
+            
+        
+
+        circle_marker_6adc83acd670d7d3e76219e9cc84fce2.bindPopup(popup_c4b86e6ef233fb4d3c51bb5dd2da1400)
+        ;
+
+        
+    
+    
+            var circle_marker_535d4f8df34400be324e1aae20cc3792 = L.circleMarker(
+                [37.292773, 126.977277],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_742eec540902364066caa87b045ad914 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2cc57686370090e01f60e12ad6acff17 = $(`<div id="html_2cc57686370090e01f60e12ad6acff17" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_742eec540902364066caa87b045ad914.setContent(html_2cc57686370090e01f60e12ad6acff17);
+            
+        
+
+        circle_marker_535d4f8df34400be324e1aae20cc3792.bindPopup(popup_742eec540902364066caa87b045ad914)
+        ;
+
+        
+    
+    
+            var circle_marker_c05c7cdab22e2b09c25be1e3fd1946e3 = L.circleMarker(
+                [37.292773, 126.977277],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3, "stroke": true, "weight": 3}
+            ).addTo(map_b0136835d03f440f5b5744b5e837933e);
+        
+    
+        var popup_a81c987e7f2cfc78947b4e400efe974a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2cd8e5b3c65f331dcea2d5b41c13665d = $(`<div id="html_2cd8e5b3c65f331dcea2d5b41c13665d" style="width: 100.0%; height: 100.0%;">Small Pothole Detected</div>`)[0];
+                popup_a81c987e7f2cfc78947b4e400efe974a.setContent(html_2cd8e5b3c65f331dcea2d5b41c13665d);
+            
+        
+
+        circle_marker_c05c7cdab22e2b09c25be1e3fd1946e3.bindPopup(popup_a81c987e7f2cfc78947b4e400efe974a)
+        ;
+
+        
+    
+</script>
+</html>

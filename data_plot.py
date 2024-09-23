@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # CSV 파일 불러오기
-file_path = '3.speedBump.csv'
+file_path = '6.04:37sb.csv'
 sensor_data = pd.read_csv(file_path)
 
 # Timestamp 컬럼을 datetime 형식으로 변환
@@ -17,7 +17,7 @@ ultrasonic_columns = ['Ultrasonic 1 (cm)', 'Ultrasonic 2 (cm)', 'Ultrasonic 3 (c
 for col in ultrasonic_columns:
     sensor_data[col] = pd.to_numeric(sensor_data[col], errors='coerce')
 
-# 40cm 이상의 값은 NaN으로 변환하고 보정
+# 40cm 이상의 값은 NaN으로 변환하고 보정 //기본값25 + 포트홀 최대 깊이 15이하? 
 for col in ultrasonic_columns:
     sensor_data[col] = sensor_data[col].mask(sensor_data[col] > 35)
     sensor_data[col].interpolate(method='linear', inplace=True, limit_direction='both')

@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # CSV 파일 불러오기
-file_path = 'sensor_data.csv'
+file_path = '7.15:15,15:21.csv'
 sensor_data = pd.read_csv(file_path)
 
 # 필요한 컬럼들이 숫자형으로 변환되도록 설정
