@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f4daef5f941458e434f7d8bbe00bea85 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f4daef5f941458e434f7d8bbe00bea85" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f4daef5f941458e434f7d8bbe00bea85 = L.map(
+                "map_f4daef5f941458e434f7d8bbe00bea85",
+                {
+                    center: [37.2934, 126.9768],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 18,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_95c8ac353a873bdf503f42804a1ae28e = L.tileLayer(
+                "Stamen Toner",
+                {"attribution": "Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.", "detectRetina": false, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_95c8ac353a873bdf503f42804a1ae28e.addTo(map_f4daef5f941458e434f7d8bbe00bea85);
+        
+    
+            var marker_c89e3ceab8e968bc7df51a86ceb43e44 = L.marker(
+                [37.2934, 126.9768],
+                {}
+            ).addTo(map_f4daef5f941458e434f7d8bbe00bea85);
+        
+    
+        var popup_2586d67ca56c56baf4f746e7abb129cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_62cfffdca235832deec105f71aa1b3b4 = $(`<div id="html_62cfffdca235832deec105f71aa1b3b4" style="width: 100.0%; height: 100.0%;">Suwon skku</div>`)[0];
+                popup_2586d67ca56c56baf4f746e7abb129cd.setContent(html_62cfffdca235832deec105f71aa1b3b4);
+            
+        
+
+        marker_c89e3ceab8e968bc7df51a86ceb43e44.bindPopup(popup_2586d67ca56c56baf4f746e7abb129cd)
+        ;
+
+        
+    
+    
+            var circle_marker_d3187f5fbcbcc85bce782169d12163b1 = L.circleMarker(
+                [37.2948, 126.97765],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 3}
+            ).addTo(map_f4daef5f941458e434f7d8bbe00bea85);
+        
+    
+        var popup_9baf63286d5eee090833a4f3ad5349c4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_968f0ac313f032913651f5018e81b85b = $(`<div id="html_968f0ac313f032913651f5018e81b85b" style="width: 100.0%; height: 100.0%;">SKKU CircleMarker</div>`)[0];
+                popup_9baf63286d5eee090833a4f3ad5349c4.setContent(html_968f0ac313f032913651f5018e81b85b);
+            
+        
+
+        circle_marker_d3187f5fbcbcc85bce782169d12163b1.bindPopup(popup_9baf63286d5eee090833a4f3ad5349c4)
+        ;
+
+        
+    
+</script>
+</html>
