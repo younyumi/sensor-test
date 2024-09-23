@@ -91,18 +91,18 @@ plt.yticks(fontsize=7)
 
 # MPU6050 Z축 가속도 시각화 (저역 통과 + 칼만 필터 적용)
 for col in mpu_columns:
-    sensor_data[f'{col}_lowpass_kalman'] = sensor_data[f'{col}_lowpass_kalman'] - 0.1
+    sensor_data[f'{col}_lowpass_kalman'] = sensor_data[f'{col}_lowpass_kalman'] - 0.18
 
 # MPU6050 Z축 가속도 시각화 (저역 통과 + 칼만 필터 적용)
 plt.subplot(5, 1, 3)
 for col in mpu_columns:
     plt.plot(sensor_data['Timestamp'], sensor_data[f'{col}_lowpass_kalman'], label=f'{col} (LPF + Kalman)', linewidth=1)
 
-plt.axhline(y=9.88, color='black', linestyle='--', linewidth=0.8, label='Baseline 9.9')
+plt.axhline(y=9.8, color='black', linestyle='--', linewidth=0.8, label='Baseline 9.8')
 plt.title('MPU6050 Z-axis Acceleration (Low-Pass + Kalman Filter) Over Time', fontsize=8)
 plt.ylabel('Z-axis Acceleration')
-plt.ylim(9.6, 10.5)
-plt.yticks(np.arange(9.6, 10.6, 0.2))
+plt.ylim(9.4, 10.4)
+plt.yticks(np.arange(9.4, 10.4, 0.2))
 plt.legend(loc='upper left', fontsize=8)
 plt.xticks(fontsize=7)
 plt.yticks(fontsize=7)
