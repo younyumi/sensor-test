@@ -64,28 +64,28 @@ for col in mpu_columns:
     sensor_data[f'{col}_lowpass_kalman'] = kalman_filtered
 
 # 그래프 시각화
-plt.figure(figsize=(15, 20))
+plt.figure(figsize=(12, 8))
 
 # 초음파 센서 데이터 시각화
-plt.subplot(5, 1, 1)
+plt.subplot(3, 1, 1)
 for col in ultrasonic_columns:
     plt.plot(sensor_data['Timestamp'], sensor_data[col], label=col, linewidth=1.0)
-plt.title('Ultrasonic Sensor Data Over Time', fontsize=8)
+plt.title('Ultrasonic Sensor Data Over Time', fontsize=10)
 plt.ylabel('Distance (cm)')
 plt.ylim(0,50)
 plt.yticks(np.arange(0,50,10))
-plt.legend(loc='upper left', fontsize=8)
+plt.legend(loc='upper left', fontsize=10)
 plt.xticks(fontsize=7)
 plt.yticks(fontsize=7)
 
 # 충격 감지 센서 데이터 시각화
 shock_columns = ['Shock FR', 'Shock FL', 'Shock RR', 'Shock RL']
-plt.subplot(5, 1, 2)
+plt.subplot(3, 1, 2)
 for col in shock_columns:
     plt.plot(sensor_data['Timestamp'], sensor_data[col], label=col, linewidth=1.0)
-plt.title('Shock Sensor Data Over Time', fontsize=8)
+plt.title('Shock Sensor Data Over Time', fontsize=10)
 plt.ylabel('Shock Value')
-plt.legend(loc='upper left', fontsize=8)
+plt.legend(loc='upper left', fontsize=10)
 plt.xticks(fontsize=7)
 plt.yticks(fontsize=7)
 
@@ -94,43 +94,43 @@ for col in mpu_columns:
     sensor_data[f'{col}_lowpass_kalman'] = sensor_data[f'{col}_lowpass_kalman'] - 0.18
 
 # MPU6050 Z축 가속도 시각화 (저역 통과 + 칼만 필터 적용)
-plt.subplot(5, 1, 3)
-for col in mpu_columns:
-    plt.plot(sensor_data['Timestamp'], sensor_data[f'{col}_lowpass_kalman'], label=f'{col} (LPF + Kalman)', linewidth=1)
+plt.subplot(3, 1, 3)
+plt.plot(sensor_data['Timestamp'], sensor_data[f'{mpu_columns[1]}_lowpass_kalman'], label=f'{mpu_columns[0]} (LPF + Kalman)', linewidth=1)  # Rear Z_acc를 Front로 표시
+plt.plot(sensor_data['Timestamp'], sensor_data[f'{mpu_columns[0]}_lowpass_kalman'], label=f'{mpu_columns[1]} (LPF + Kalman)', linewidth=1)  # Front Z_acc를 Rear로 표시
 
 plt.axhline(y=9.8, color='black', linestyle='--', linewidth=0.8, label='Baseline 9.8')
-plt.title('MPU6050 Z-axis Acceleration (Low-Pass + Kalman Filter) Over Time', fontsize=8)
+plt.title('MPU6050 Z-axis Acceleration (Low-Pass + Kalman Filter) Over Time', fontsize=10)
 plt.ylabel('Z-axis Acceleration')
 plt.ylim(9.4, 10.4)
 plt.yticks(np.arange(9.4, 10.4, 0.2))
-plt.legend(loc='upper left', fontsize=8)
+plt.legend(loc='upper left', fontsize=10)
 plt.xticks(fontsize=7)
 plt.yticks(fontsize=7)
 
-# MPU6050 Roll 시각화
-plt.subplot(5, 1, 4)
-plt.plot(sensor_data['Timestamp'], sensor_data['Front Roll'], label='Front Roll', linewidth=1)
-plt.plot(sensor_data['Timestamp'], sensor_data['Rear Roll'], label='Rear Roll', linewidth=1)
-plt.title('MPU6050 Roll Over Time', fontsize=8)
-plt.ylabel('Roll (degrees)')
-plt.ylim(-20,20)
-plt.yticks(np.arange(-20, 21, 10))
-plt.legend(loc='upper left', fontsize=8)
-plt.xticks(fontsize=7)
-plt.yticks(fontsize=7)
+# # MPU6050 Roll 시각화
+# plt.subplot(5, 1, 4)
+# plt.plot(sensor_data['Timestamp'], sensor_data['Front Roll'], label='Front Roll', linewidth=1)
+# plt.plot(sensor_data['Timestamp'], sensor_data['Rear Roll'], label='Rear Roll', linewidth=1)
+# plt.title('MPU6050 Roll Over Time', fontsize=10)
+# plt.ylabel('Roll (degrees)')
+# plt.ylim(-20,20)
+# plt.yticks(np.arange(-20, 21, 10))
+# plt.legend(loc='upper left', fontsize=10)
+# plt.xticks(fontsize=7)
+# plt.yticks(fontsize=7)
 
-# MPU6050 Pitch 시각화
-plt.subplot(5, 1, 5)
-plt.plot(sensor_data['Timestamp'], sensor_data['Front Pitch'], label='Front Pitch', linewidth=1)
-plt.plot(sensor_data['Timestamp'], sensor_data['Rear Pitch'], label='Rear Pitch', linewidth=1)
-plt.title('MPU6050 Pitch Over Time', fontsize=8)
-plt.ylabel('Pitch (degrees)')
-plt.ylim(-20,20)
-plt.yticks(np.arange(-20, 21, 10))
-plt.xlabel('Timestamp')
-plt.legend(loc='upper left', fontsize=8)
-plt.xticks(fontsize=7)
-plt.yticks(fontsize=7)
+# # MPU6050 Pitch 시각화
+# plt.subplot(5, 1, 5)
+# plt.plot(sensor_data['Timestamp'], sensor_data['Front Pitch'], label='Front Pitch', linewidth=1)
+# plt.plot(sensor_data['Timestamp'], sensor_data['Rear Pitch'], label='Rear Pitch', linewidth=1)
+# plt.title('MPU6050 Pitch Over Time', fontsize=10)
+# plt.ylabel('Pitch (degrees)')
+# plt.ylim(-20,20)
+# plt.yticks(np.arange(-20, 21, 10))
+# plt.xlabel('Timestamp')
+# plt.legend(loc='upper left', fontsize=10)
+# plt.xticks(fontsize=7)
+# plt.yticks(fontsize=7)
 
 # 그래프 표시
 plt.tight_layout()

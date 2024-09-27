@@ -37,19 +37,49 @@ sensor_data = sensor_data[(sensor_data['Latitude'] != 0) & (sensor_data['Longitu
 # 포트홀 감지 알고리즘
 potholes = []
 
+# for index, row in sensor_data.iterrows():
+#     # 1. 4바퀴 모두에서 충격이 감지된 경우
+#     if row['Shock FR'] >= 1 and row['Shock FL'] >= 1 and row['Shock RR'] >= 1 and row['Shock RL'] >= 1:
+#         # Front Z_acc와 Rear Z_acc가 모두 10 이하인 경우 포트홀로 판단
+#         if row['Front Z_acc'] <= 10 and row['Rear Z_acc'] <= 10:
+#             potholes.append({
+#                 'latitude': row['Latitude'],
+#                 'longitude': row['Longitude'],
+#                 'size': 'large'
+#             })
+
+#     # 2. 일부 바퀴에서만 충격이 감지된 경우
+#     elif row['Shock FR'] >= 1 or row['Shock FL'] >= 1 or row['Shock RR'] >= 1 or row['Shock RL'] >= 1:
+#         # 초음파 센서의 거리 변화를 확인
+#         ultrasonic_changes = [
+#             row['Ultrasonic 1 (cm)'],
+#             row['Ultrasonic 2 (cm)'],
+#             row['Ultrasonic 3 (cm)'],
+#             row['Ultrasonic 4 (cm)']
+#         ]
+#         # 4개의 거리값이 모두 일정하게 변하지 않고 일부만 변화하는 경우
+#         if not (ultrasonic_changes[0] == ultrasonic_changes[1] == ultrasonic_changes[2] == ultrasonic_changes[3]):
+#             potholes.append({
+#                 'latitude': row['Latitude'],
+#                 'longitude': row['Longitude'],
+#                 'size': 'small'
+#             })
+
 for index, row in sensor_data.iterrows():
-    # 1. 4바퀴 모두에서 충격이 감지된 경우
+    # 1. 4바퀴에서 전부 충격이 감지된 경우
     if row['Shock FR'] >= 1 and row['Shock FL'] >= 1 and row['Shock RR'] >= 1 and row['Shock RL'] >= 1:
-        # Front Z_acc와 Rear Z_acc가 모두 10 이하인 경우 포트홀로 판단
+        # Front Z_acc와 Rear Z_acc가 모두 10 이하인 경우 large 포트홀로 판단
         if row['Front Z_acc'] <= 10 and row['Rear Z_acc'] <= 10:
-            potholes.append({
+            pothole_data = {
                 'latitude': row['Latitude'],
                 'longitude': row['Longitude'],
                 'size': 'large'
-            })
-
-    # 2. 일부 바퀴에서만 충격이 감지된 경우
-    elif row['Shock FR'] >= 1 or row['Shock FL'] >= 1 or row['Shock RR'] >= 1 or row['Shock RL'] >= 1:
+            }
+            potholes.append(pothole_data)
+            print(f"Large Pothole Detected - Latitude: {pothole_data['latitude']}, Longitude: {pothole_data['longitude']}")
+    
+    # 2. 1개 ~ 3개의 바퀴에서만 충격이 감지된 경우
+    elif 1 <= sum([row['Shock FR'] >= 1, row['Shock FL'] >= 1, row['Shock RR'] >= 1, row['Shock RL'] >= 1]) <= 3:
         # 초음파 센서의 거리 변화를 확인
         ultrasonic_changes = [
             row['Ultrasonic 1 (cm)'],
@@ -57,16 +87,24 @@ for index, row in sensor_data.iterrows():
             row['Ultrasonic 3 (cm)'],
             row['Ultrasonic 4 (cm)']
         ]
-        # 4개의 거리값이 모두 일정하게 변하지 않고 일부만 변화하는 경우
-        if not (ultrasonic_changes[0] == ultrasonic_changes[1] == ultrasonic_changes[2] == ultrasonic_changes[3]):
-            potholes.append({
+        
+        # 거리 변화가 1cm 이하이면 동일한 값으로 간주
+        def is_similar(val1, val2, threshold=2):
+            return abs(val1 - val2) <= threshold
+        
+        # 4개의 값이 모두 비슷한지 확인 (1cm 이하 차이 무시)
+        if not (is_similar(ultrasonic_changes[0], ultrasonic_changes[1]) and 
+                is_similar(ultrasonic_changes[1], ultrasonic_changes[2]) and 
+                is_similar(ultrasonic_changes[2], ultrasonic_changes[3])):
+            pothole_data= {
                 'latitude': row['Latitude'],
                 'longitude': row['Longitude'],
                 'size': 'small'
-            })
+            }
+            potholes.append(pothole_data)
+            print(f"Small Pothole Detected - Latitude: {pothole_data['latitude']}, Longitude: {pothole_data['longitude']}")
 
-# 지도 생성
-# 기본 지도 설정 (초기 위치는 임의로 설정, 후에 실제 포트홀 데이터 좌표를 사용함)
+
 latitude = 37.2934  # 기본 위치
 longitude = 126.9768  # 기본 위치
 map_potholes = folium.Map(location=[latitude, longitude], zoom_start=18)
@@ -97,5 +135,4 @@ for pothole in potholes:
 # 지도 HTML 파일로 저장
 map_potholes.save("pothole_map.html")
 
-# 포트홀 감지 완료 후 지도에 저장된 위치 정보를 시각화
 print(f"Total Potholes Detected: {len(potholes)}")
