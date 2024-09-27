@@ -54,10 +54,10 @@ class KalmanFilter:
 mpu_columns = ['Front Z_acc', 'Rear Z_acc']
 for col in mpu_columns:
     # 1. 저역 통과 필터 적용
-    lowpass_filtered = low_pass_filter(sensor_data[col], alpha=0.5)
+    lowpass_filtered = low_pass_filter(sensor_data[col], alpha=1)
     
     # 2. 저역 통과 필터 결과에 칼만 필터 적용
-    kf = KalmanFilter(process_variance=1e-5, measurement_variance=0.1**2, estimate_variance=1e-4, initial_value=lowpass_filtered[0])
+    kf = KalmanFilter(process_variance=1e-4, measurement_variance=0.1**1, estimate_variance=1e-4, initial_value=lowpass_filtered[0])
     kalman_filtered = [kf.update(val) for val in lowpass_filtered]
     
     # 결과를 새로운 열에 저장
@@ -101,8 +101,8 @@ plt.plot(sensor_data['Timestamp'], sensor_data[f'{mpu_columns[0]}_lowpass_kalman
 plt.axhline(y=9.8, color='black', linestyle='--', linewidth=0.8, label='Baseline 9.8')
 plt.title('MPU6050 Z-axis Acceleration (Low-Pass + Kalman Filter) Over Time', fontsize=10)
 plt.ylabel('Z-axis Acceleration')
-plt.ylim(9.4, 10.4)
-plt.yticks(np.arange(9.4, 10.4, 0.2))
+plt.ylim(8.5, 10.5)
+plt.yticks(np.arange(8.5, 10.5, 0.5))
 plt.legend(loc='upper left', fontsize=10)
 plt.xticks(fontsize=7)
 plt.yticks(fontsize=7)
