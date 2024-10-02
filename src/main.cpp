@@ -1,63 +1,145 @@
-#include <Arduino.h>
-#include "MultiUltrasonic.h"
-//#include "MPU6050.h"
-#include "shocksensor.h"
 
-const int num = 4;  
 
-int trig[num] = {2, 4, 6, 8};
-int echo[num] = {3, 5, 7, 9};
+// #include <DFRobotDFPlayerMini.h>
 
-// Define I2C addresses for each MPU6050 sensor (assuming unique addresses)
-//int mpuAddresses[num] = {0x68, 0x69, 0x6A, 0x6B};
+// DFRobotDFPlayerMini myMP3;  //18.19
 
-// shock sensor pin number
-int shockPins[num] = {10, 11, 12, 13};
+// void setup() {
+//   Serial.begin(115200); // 디버깅을 위한 기본 Serial
+//   Serial1.begin(9600);  // MP3 모듈과의 통신을 위한 Serial1
 
-//우측전륜, 좌측전륜, 우측후륜, 좌측후륜
-const char* sensorLabels[num] = {"FR", "FL", "RR", "RL"};
+//   if (!myMP3.begin(Serial1)) {  // DFPlayer 초기화
+//     Serial.println("fail");
+//     while (true);
+//   }
 
-MultiUltrasonic ultrasonicSensors(trig, echo, num);
-//MPU6050* mpu6050Sensors[num];
-ShockSensor* shockSensors[num];
+//   Serial.println("..");
+//   myMP3.volume(20);  // 볼륨 설정 (0~30)
+//   myMP3.play(1);     // 첫 번째 트랙 재생
+// }
+
+// void loop() {
+//   // 추가 로직이 필요 없다면 빈 상태로 유지
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #include <DFRobotDFPlayerMini.h>
+
+// DFRobotDFPlayerMini myMP3;
+
+// void setup() {
+//   Serial.begin(115200); // 디버깅을 위한 기본 Serial
+//   Serial1.begin(9600);  // MP3 모듈과의 통신을 위한 Serial1
+
+//   if (!myMP3.begin(Serial1)) {  // DFPlayer 초기화
+//     Serial.println("DFPlayer Mini 초기화 실패!");
+//     while (true);
+//   }
+
+//   Serial.println("DFPlayer Mini 준비 완료.");
+//   myMP3.volume(20);  // 볼륨 설정 (0~30)
+//   myMP3.loop(1);     // 첫 번째 트랙을 무한 반복 재생
+// }
+
+// void loop() {
+
+// }
+
+
+
+
+
+//스로틀
+// #include <DFRobotDFPlayerMini.h>
+
+// DFRobotDFPlayerMini myMP3;
+// int throttlePin = A0;  // 스로틀이 연결된 아날로그 핀
+// int threshold = 300;   // 스로틀 값이 이 값을 초과할 때 소리 재생
+
+// void setup() {
+//   Serial.begin(115200);  // 디버깅을 위한 기본 Serial
+//   Serial1.begin(9600);   // MP3 모듈과의 통신을 위한 Serial1
+
+//   if (!myMP3.begin(Serial1)) {  // DFPlayer 초기화
+//     Serial.println("DFPlayer Mini 초기화 실패!");
+//     while (true);
+//   }
+
+//   Serial.println("DFPlayer Mini 준비 완료.");
+//   myMP3.volume(20);  // 볼륨 설정 (0~30)
+// }
+
+// void loop() {
+//   int throttleValue = analogRead(throttlePin);  // 스로틀 값 읽기
+
+//   if (throttleValue > threshold) {
+//     Serial.println("playing...");
+//     myMP3.play(1);  // 첫 번째 트랙 재생
+//   } else {
+//     myMP3.stop();   // 소리 정지
+//     Serial.println("none throttle.");
+//   }
+
+//   delay(100);  // 반복 주기 (지연 시간 설정)
+// }
+
+
+
+
+
+
+
+
+//볼륨조절
+#include <DFRobotDFPlayerMini.h>
+
+DFRobotDFPlayerMini myMP3;
+int volumeLevel = 5;       
+unsigned long prevMillis = 0;
+unsigned long interval = 500;  
 
 void setup() {
-    // Initialize serial communication
-    Serial.begin(115200);
-    
-    // Initialize ultrasonic sensors
-    ultrasonicSensors.begin();
+  Serial.begin(115200); 
+  Serial1.begin(9600);  
 
-    // Initialize shock sensors
-    for (int i = 0; i < num; i++) {
-        shockSensors[i] = new ShockSensor(shockPins[i]);
-    }
-}
+  if (!myMP3.begin(Serial1)) {  // DFPlayer 초기화
+    Serial.println("fail!");
+    while (true);
+  }
+
+  Serial.println("ready.");
+  myMP3.volume(volumeLevel); 
+  myMP3.loop(1); 
+}            
 
 void loop() {
-    // Update distance measurements
-    ultrasonicSensors.update();
+  unsigned long currentMillis = millis();
 
-    // Print distance from each ultrasonic sensor
-    for (int i = 0; i < num; i++) {
-        Serial.print("Ultrasonic Sensor ");
-        Serial.print(i + 1);
-        Serial.print(": ");
-        Serial.print(ultrasonicSensors.getDistance(i));
-        Serial.println(" cm");
+  if (currentMillis - prevMillis >= interval) {
+    prevMillis = currentMillis; 
+
+    if (volumeLevel < 30) {  
+      volumeLevel++;
+      myMP3.volume(volumeLevel);  
+      Serial.print("현재 볼륨: ");
+      Serial.println(volumeLevel);
     }
-
-    // Print shock detection status from each shock sensor
-    for (int i = 0; i < num; i++) {
-        Serial.print("Shock Sensor ");
-        Serial.print(i + 1);
-        Serial.print(": ");
-        Serial.println(shockSensors[i]->isShockDetected() ? "1" : "0");
-    }
-
-    // Divider for readability
-    Serial.println("---------------------");
-
-    // Delay before the next loop iteration
-    delay(100);
+  }
 }
